@@ -1,54 +1,63 @@
 # WhatsApp Web Privacy Shield 🛡️
 
-Ekstensi browser lokal yang ringan, cepat, dan elegan untuk menjaga privasi layar WhatsApp Web Anda dari intipan orang di sekitar (*shoulder-surfing*).
+[![Manifest V3](https://img.shields.io/badge/Manifest-V3-00a884.svg)](https://developer.chrome.com/docs/extensions/mv3/intro/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Platform: Chrome | Edge | Brave | Opera](https://img.shields.io/badge/Platform-Chromium-blue.svg)](https://www.google.com/chrome/)
 
-Dibuat dari awal (*from scratch*) dengan arsitektur **Manifest V3** murni tanpa dependensi eksternal, tanpa bundler rumit, dan 100% berjalan lokal di browser Anda.
+Ekstensi browser lokal yang ringan, cepat, dan elegan untuk melindungi privasi layar WhatsApp Web Anda dari intipan orang sekitar (*shoulder-surfing*).
+
+Dibuat dari awal (*from scratch*) dengan arsitektur **Manifest V3** murni tanpa dependensi eksternal, tanpa bundler rumit, dan **100% berjalan lokal di browser**.
 
 ---
 
 ## ✨ Fitur Utama
 
-- 🔍 **Efek Blur Cerdas & Ringan:**
+- 🔍 **Efek Blur Selektif & Cerdas:**
   - **Isi Pesan Chat:** Obscure bubble obrolan aktif.
+  - **Buka Chat = Buka Blur:** Opsi pintar agar saat percakapan dibuka, isi chat langsung terlihat jelas tanpa perlu repot hover satu-satu, sementara daftar chat di sidebar kiri tetap terlindungi.
   - **Preview Pesan:** Blur cuplikan pesan terakhir pada daftar chat di panel kiri.
-  - **Media & Gambar:** Blur foto, thumbnail video, stiker, dan audio player.
-  - **Nama Kontak & Grup:** Sembunyikan identitas pengirim atau grup.
-  - **Foto Profil:** Blur avatar di sidebar dan header.
+  - **Media & Gambar:** Blur foto, thumbnail video, stiker, audio player, dan media caption.
+  - **Nama Kontak & Grup:** Sembunyikan identitas nama pengirim, judul grup di daftar chat maupun header.
+  - **Foto Profil:** Blur avatar di daftar chat dan header percakapan.
   - **Kotak Ketik:** Blur teks saat Anda sedang mengetik pesan baru.
-- 👁️ **Hover to Reveal:** Cukup arahkan kursor mouse ke elemen yang ingin dilihat, blur akan langsung terbuka dengan transisi mulus (*smooth transition*).
-- 🔓 **Buka Chat = Buka Blur (Opsi Otomatis):** Opsi agar saat Anda membuka percakapan, isi chat langsung terbuka jelas tanpa perlu repot hover satu-satu, sementara daftar chat di kiri tetap aman ter-blur.
-- ⚡ **Shortcut Cepat `Alt + X`:** Nyalakan atau matikan mode privasi seketika dengan keyboard saat ada rekan kerja atau orang lain mendekat.
-- 🎛️ **Kontrol Lengkap (Popup):**
+- 👁️ **Hover to Reveal Tanpa Jeda (*Zero Lag*):** Cukup arahkan kursor mouse ke pesan, media, atau nama yang ingin dilihat, blur akan langsung terbuka seketika dan kembali ter-blur begitu kursor menjauh.
+- ⚡ **Shortcut Instan `Alt + X`:** Nyalakan atau matikan mode proteksi seketika menggunakan keyboard saat ada rekan kerja atau orang lain mendekati layar Anda.
+- 🎛️ **Menu Pengaturan Lengkap (Popup):**
   - Master Switch ON/OFF.
-  - Toggle terpisah untuk setiap kategori (Pesan, Media, Nama, Foto, Input).
-  - Preset Cepat: **Standar**, **Maksimal**, dan **Minimal**.
-  - Slider intensitas blur (3px - 18px).
-- 🔒 **100% Aman & Privat:** Tidak mengumpulkan, menyimpan, atau mengirim data chat ke server manapun.
+  - Toggle mandiri untuk setiap kategori (Pesan, Media, Nama, Foto, Input).
+  - Preset Cepat: **Standar** (Rekomendasi), **Maksimal** (Proteksi Total), dan **Minimal**.
+  - Slider intensitas blur dinamis (3px – 18px).
+- 🔒 **100% Aman & Terjaga:** Tidak ada analitik, tidak ada pelacak, tidak ada data chat yang dibaca, disimpan, ataupun dikirim ke server manapun.
 
 ---
 
-## 🚀 Cara Pasang di Browser (Chrome, Edge, Brave, Opera)
+## 🚀 Cara Pasang di Browser
 
-1. Buka browser Chromium favorit Anda (Google Chrome, Microsoft Edge, Brave, dll).
-2. Masuk ke halaman ekstensi:
-   - **Chrome:** ketik `chrome://extensions` di address bar
-   - **Edge:** ketik `edge://extensions`
-   - **Brave:** ketik `brave://extensions`
-3. Aktifkan **Developer Mode** (Mode Pengembang) di pojok kanan atas.
+Ekstensi ini kompatibel dengan semua browser berbasis Chromium (Google Chrome, Microsoft Edge, Brave, Opera, Vivaldi, dll).
+
+1. Clone repositori ini atau unduh dalam format ZIP dan ekstrak:
+   ```bash
+   git clone https://github.com/Zettt416/whatsapp-privacy-browser-extension.git
+   ```
+2. Buka halaman ekstensi browser Anda:
+   - **Google Chrome:** `chrome://extensions`
+   - **Microsoft Edge:** `edge://extensions`
+   - **Brave Browser:** `brave://extensions`
+3. Aktifkan sakelar **Developer mode** (Mode Pengembang) di pojok kanan atas.
 4. Klik tombol **Load unpacked** (Muat yang belum dibongkar).
-5. Pilih folder repositori ini:
-   ```
-   whatsapp-privacy-browser-extension
-   ```
-6. Buka [web.whatsapp.com](https://web.whatsapp.com/) — Ekstensi langsung aktif dan melindungi layar Anda!
+5. Pilih folder repositori `whatsapp-privacy-browser-extension`.
+6. Buka atau muat ulang [web.whatsapp.com](https://web.whatsapp.com/). Ekstensi langsung aktif melindungi percakapan Anda!
 
 ---
 
-## ⌨️ Penggunaan & Shortcut
+## ⌨️ Pintasan Keyboard & Kontrol
 
-- **Toggle Mode Privasi:** Tekan `Alt + X` di keyboard kapan saja saat berada di WhatsApp Web.
-- **Pengaturan:** Klik ikon tameng hijau di toolbar browser untuk membuka menu konfigurasi.
-- **Indikator Layar:** Tersedia pill kecil di pojok kanan bawah WhatsApp Web bertuliskan *Privacy Active* yang bisa diklik langsung untuk toggle on/off.
+| Perintah | Fungsi |
+| :--- | :--- |
+| <kbd>Alt</kbd> + <kbd>X</kbd> | Toggle cepat proteksi ON / OFF |
+| **Hover Mouse** | Membuka blur pada pesan, media, atau nama sementara |
+| **Klik Badge "Privacy Active"** | Toggle proteksi langsung dari pojok kanan bawah WhatsApp Web |
+| **Klik Ikon Ekstensi** | Membuka menu konfigurasi, preset, dan intensitas blur |
 
 ---
 
@@ -58,16 +67,22 @@ Dibuat dari awal (*from scratch*) dengan arsitektur **Manifest V3** murni tanpa 
 whatsapp-privacy-browser-extension/
 ├── manifest.json          # Konfigurasi Manifest V3
 ├── content/
-│   ├── content.css        # Aturan CSS blur & hover reveal 60 FPS
-│   └── content.js         # Content script pengatur class & shortcut
+│   ├── content.css        # Aturan CSS blur & hover reveal :not(:hover) (60 FPS)
+│   └── content.js         # Content script pengatur kelas dinamis & shortcut
 ├── popup/
-│   ├── popup.html         # Tampilan popup pengaturan
-│   ├── popup.css          # Tema modern WhatsApp Dark UI
-│   └── popup.js           # Logika penyimpanan & preset (chrome.storage)
+│   ├── popup.html         # Tampilan popup pengaturan WhatsApp Dark UI
+│   ├── popup.css          # Styling komponen popup & switch
+│   └── popup.js           # Pengelolaan preferensi via chrome.storage.local
 ├── background/
 │   └── background.js      # Service worker untuk keyboard shortcuts
-├── icons/                 # Ikon ekstensi (16px, 48px, 128px)
+├── icons/                 # Ikon ekstensi resolusi 16px, 48px, dan 128px
 ├── .gitignore
+├── LICENSE                # Lisensi MIT
 └── README.md
 ```
 
+---
+
+## 📄 Lisensi
+
+Proyek ini dilisensikan di bawah lisensi [MIT](LICENSE). Silakan gunakan, pelajari, dan kembangkan secara bebas.
