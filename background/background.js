@@ -9,7 +9,7 @@ const DEFAULT_SETTINGS = {
   unblurActiveChat: false,
   blurSidebar: true,
   blurMedia: true,
-  blurNames: false,
+  blurNames: true,
   blurPhotos: false,
   blurInput: false,
   blurIntensity: 8,
@@ -39,4 +39,3 @@ chrome.commands.onCommand.addListener((command) => {
     });
   }
 });
-

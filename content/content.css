@@ -20,31 +20,79 @@ body.wa-privacy-on.wa-blur-messages:not(.wa-unblur-active) div[role="row"] .copy
   transition: var(--wa-blur-transition);
 }
 
-/* Unblur message on hover */
-body.wa-privacy-on.wa-blur-messages:not(.wa-unblur-active) [data-testid="msg-container"]:hover,
-body.wa-privacy-on.wa-blur-messages:not(.wa-unblur-active) .message-in:hover,
-body.wa-privacy-on.wa-blur-messages:not(.wa-unblur-active) .message-out:hover,
-body.wa-privacy-on.wa-blur-messages:not(.wa-unblur-active) div[data-id]:hover .selectable-text,
-body.wa-privacy-on.wa-blur-messages:not(.wa-unblur-active) div[role="row"]:hover .copyable-text {
+/* --------------------------------------------------------------------------
+   2. Media (Photos, Videos, Stickers, Voice Notes) in Chat
+   -------------------------------------------------------------------------- */
+body.wa-privacy-on.wa-blur-media [data-testid="image-thumb"],
+body.wa-privacy-on.wa-blur-media [data-testid="video-thumb"],
+body.wa-privacy-on.wa-blur-media [data-testid="sticker"],
+body.wa-privacy-on.wa-blur-media [data-testid="audio-player"],
+body.wa-privacy-on.wa-blur-media [data-testid="voice-player"],
+body.wa-privacy-on.wa-blur-media [data-testid="media-caption"],
+body.wa-privacy-on.wa-blur-media [data-testid="media-canvas"],
+body.wa-privacy-on.wa-blur-media [data-testid="msg-container"] img:not([alt=""]):not([data-testid="status-v3-container"]),
+body.wa-privacy-on.wa-blur-media [data-testid="msg-container"] video,
+body.wa-privacy-on.wa-blur-media [data-testid="msg-container"] canvas,
+body.wa-privacy-on.wa-blur-media div[data-id] img:not([alt=""]):not([data-testid="status-v3-container"]),
+body.wa-privacy-on.wa-blur-media div[data-id] video,
+body.wa-privacy-on.wa-blur-media div[data-id] canvas,
+body.wa-privacy-on.wa-blur-media .message-in img:not([alt=""]):not([data-testid="status-v3-container"]),
+body.wa-privacy-on.wa-blur-media .message-in video,
+body.wa-privacy-on.wa-blur-media .message-in canvas,
+body.wa-privacy-on.wa-blur-media .message-out img:not([alt=""]):not([data-testid="status-v3-container"]),
+body.wa-privacy-on.wa-blur-media .message-out video,
+body.wa-privacy-on.wa-blur-media .message-out canvas {
+  filter: blur(calc(var(--wa-blur-intensity, 8px) * 1.5)) !important;
+  transition: var(--wa-blur-transition);
+}
+
+/* --------------------------------------------------------------------------
+   UNBLUR ON HOVER (MESSAGES & MEDIA)
+   Hovering over any message container, bubble, or media element immediately
+   unblurs the entire message and all child media/text without delay!
+   -------------------------------------------------------------------------- */
+body.wa-privacy-on [data-testid="msg-container"]:hover,
+body.wa-privacy-on [data-testid="msg-container"]:hover *,
+body.wa-privacy-on .message-in:hover,
+body.wa-privacy-on .message-in:hover *,
+body.wa-privacy-on .message-out:hover,
+body.wa-privacy-on .message-out:hover *,
+body.wa-privacy-on div[data-id]:hover,
+body.wa-privacy-on div[data-id]:hover *,
+body.wa-privacy-on [role="row"]:hover [data-testid="msg-container"],
+body.wa-privacy-on [role="row"]:hover [data-testid="msg-container"] *,
+body.wa-privacy-on [data-testid="image-thumb"]:hover,
+body.wa-privacy-on [data-testid="video-thumb"]:hover,
+body.wa-privacy-on [data-testid="sticker"]:hover,
+body.wa-privacy-on [data-testid="audio-player"]:hover,
+body.wa-privacy-on [data-testid="voice-player"]:hover,
+body.wa-privacy-on [data-testid="media-caption"]:hover {
   filter: blur(0px) !important;
 }
 
-/* If user enables "Unblur Active Chat", open chat messages remain unblurred */
+/* If user enables "Unblur Active Chat", open chat messages and media remain completely unblurred */
 body.wa-privacy-on.wa-unblur-active #main [data-testid="msg-container"],
+body.wa-privacy-on.wa-unblur-active #main [data-testid="msg-container"] *,
 body.wa-privacy-on.wa-unblur-active #main .message-in,
+body.wa-privacy-on.wa-unblur-active #main .message-in *,
 body.wa-privacy-on.wa-unblur-active #main .message-out,
-body.wa-privacy-on.wa-unblur-active #main .selectable-text {
+body.wa-privacy-on.wa-unblur-active #main .message-out *,
+body.wa-privacy-on.wa-unblur-active #main div[data-id],
+body.wa-privacy-on.wa-unblur-active #main div[data-id] *,
+body.wa-privacy-on.wa-unblur-active #main header span[title],
+body.wa-privacy-on.wa-unblur-active #main header span[dir="auto"] {
   filter: none !important;
 }
 
 /* --------------------------------------------------------------------------
-   2. Last Message Previews in Chat List (Left Sidebar)
+   3. Last Message Previews in Chat List (Left Sidebar)
    -------------------------------------------------------------------------- */
 body.wa-privacy-on.wa-blur-sidebar [data-testid="cell-frame-container"] span[dir="ltr"]:not([title]),
 body.wa-privacy-on.wa-blur-sidebar [data-testid="last-msg-status"],
 body.wa-privacy-on.wa-blur-sidebar [data-testid="cell-frame-title"] ~ div,
-body.wa-privacy-on.wa-blur-sidebar [data-testid="chat-list"] [role="listitem"] span:not([title])[dir="ltr"],
-body.wa-privacy-on.wa-blur-sidebar [data-testid="chat-list"] [role="listitem"] div[role="gridcell"]:nth-child(2) div:last-child {
+body.wa-privacy-on.wa-blur-sidebar #pane-side [role="row"] div[role="gridcell"]:nth-child(2) div:last-child,
+body.wa-privacy-on.wa-blur-sidebar #pane-side [role="listitem"] div[role="gridcell"]:nth-child(2) div:last-child,
+body.wa-privacy-on.wa-blur-sidebar #pane-side span:not([title])[dir="ltr"] {
   filter: blur(var(--wa-blur-intensity, 8px)) !important;
   transition: var(--wa-blur-transition);
 }
@@ -53,79 +101,79 @@ body.wa-privacy-on.wa-blur-sidebar [data-testid="chat-list"] [role="listitem"] d
 body.wa-privacy-on.wa-blur-sidebar [data-testid="cell-frame-container"]:hover span[dir="ltr"]:not([title]),
 body.wa-privacy-on.wa-blur-sidebar [data-testid="cell-frame-container"]:hover [data-testid="last-msg-status"],
 body.wa-privacy-on.wa-blur-sidebar [data-testid="cell-frame-container"]:hover [data-testid="cell-frame-title"] ~ div,
-body.wa-privacy-on.wa-blur-sidebar [data-testid="chat-list"] [role="listitem"]:hover span:not([title])[dir="ltr"],
-body.wa-privacy-on.wa-blur-sidebar [data-testid="chat-list"] [role="listitem"]:hover div[role="gridcell"]:nth-child(2) div:last-child {
+body.wa-privacy-on.wa-blur-sidebar #pane-side [role="row"]:hover div[role="gridcell"]:nth-child(2) div:last-child,
+body.wa-privacy-on.wa-blur-sidebar #pane-side [role="listitem"]:hover div[role="gridcell"]:nth-child(2) div:last-child,
+body.wa-privacy-on.wa-blur-sidebar #pane-side [role="row"]:hover span:not([title])[dir="ltr"],
+body.wa-privacy-on.wa-blur-sidebar #pane-side [role="listitem"]:hover span:not([title])[dir="ltr"] {
   filter: blur(0px) !important;
 }
 
 /* --------------------------------------------------------------------------
-   3. Media (Photos, Videos, Stickers, Voice Notes)
+   4. Contact & Group Names (Sidebar, Header, and Group Senders)
    -------------------------------------------------------------------------- */
-body.wa-privacy-on.wa-blur-media [data-testid="image-thumb"],
-body.wa-privacy-on.wa-blur-media [data-testid="video-thumb"],
-body.wa-privacy-on.wa-blur-media [data-testid="sticker"],
-body.wa-privacy-on.wa-blur-media [data-testid="audio-player"],
-body.wa-privacy-on.wa-blur-media [data-testid="voice-player"],
-body.wa-privacy-on.wa-blur-media [data-testid="media-caption"],
-body.wa-privacy-on.wa-blur-media [data-testid="msg-container"] img:not([alt=""]):not([data-testid="status-v3-container"]),
-body.wa-privacy-on.wa-blur-media [data-testid="msg-container"] video,
-body.wa-privacy-on.wa-blur-media [data-testid="msg-container"] canvas {
-  filter: blur(calc(var(--wa-blur-intensity, 8px) * 1.5)) !important;
-  transition: var(--wa-blur-transition);
-}
-
-/* Unblur media on hover */
-body.wa-privacy-on.wa-blur-media [data-testid="image-thumb"]:hover,
-body.wa-privacy-on.wa-blur-media [data-testid="video-thumb"]:hover,
-body.wa-privacy-on.wa-blur-media [data-testid="sticker"]:hover,
-body.wa-privacy-on.wa-blur-media [data-testid="audio-player"]:hover,
-body.wa-privacy-on.wa-blur-media [data-testid="voice-player"]:hover,
-body.wa-privacy-on.wa-blur-media [data-testid="media-caption"]:hover,
-body.wa-privacy-on.wa-blur-media [data-testid="msg-container"] img:hover,
-body.wa-privacy-on.wa-blur-media [data-testid="msg-container"] video:hover,
-body.wa-privacy-on.wa-blur-media [data-testid="msg-container"] canvas:hover {
-  filter: blur(0px) !important;
-}
-
-/* --------------------------------------------------------------------------
-   4. Contact & Group Names
-   -------------------------------------------------------------------------- */
+body.wa-privacy-on.wa-blur-names #pane-side span[title],
+body.wa-privacy-on.wa-blur-names #pane-side [data-testid="cell-frame-title"],
+body.wa-privacy-on.wa-blur-names #pane-side [data-testid="cell-frame-title"] span,
 body.wa-privacy-on.wa-blur-names [data-testid="cell-frame-title"],
-body.wa-privacy-on.wa-blur-names [data-testid="chat-list"] span[title],
+body.wa-privacy-on.wa-blur-names [data-testid="cell-frame-title"] span,
+body.wa-privacy-on.wa-blur-names [data-testid="cell-frame-container"] span[title],
 body.wa-privacy-on.wa-blur-names header [data-testid="conversation-info-header-chat-title"],
-body.wa-privacy-on.wa-blur-names header span[title] {
+body.wa-privacy-on.wa-blur-names header span[title],
+body.wa-privacy-on.wa-blur-names header div[role="button"] span[dir="auto"],
+body.wa-privacy-on.wa-blur-names header span[dir="auto"],
+body.wa-privacy-on.wa-blur-names #main header span[title],
+body.wa-privacy-on.wa-blur-names #main header span[dir="auto"],
+body.wa-privacy-on.wa-blur-names #main header div[role="button"] span,
+body.wa-privacy-on.wa-blur-names #main [data-testid="msg-container"] span[style*="color"],
+body.wa-privacy-on.wa-blur-names #main [data-testid="msg-container"] [data-testid="author"],
+body.wa-privacy-on.wa-blur-names #main .message-in span[style*="color"] {
   filter: blur(var(--wa-blur-intensity, 8px)) !important;
   transition: var(--wa-blur-transition);
 }
 
 /* Unblur names on hover */
+body.wa-privacy-on.wa-blur-names #pane-side [role="row"]:hover span[title],
+body.wa-privacy-on.wa-blur-names #pane-side [role="listitem"]:hover span[title],
+body.wa-privacy-on.wa-blur-names #pane-side [data-testid="cell-frame-container"]:hover span[title],
+body.wa-privacy-on.wa-blur-names #pane-side [data-testid="cell-frame-container"]:hover [data-testid="cell-frame-title"],
 body.wa-privacy-on.wa-blur-names [data-testid="cell-frame-container"]:hover [data-testid="cell-frame-title"],
-body.wa-privacy-on.wa-blur-names [data-testid="chat-list"] [role="listitem"]:hover span[title],
-body.wa-privacy-on.wa-blur-names header [data-testid="conversation-info-header-chat-title"]:hover,
-body.wa-privacy-on.wa-blur-names header span[title]:hover {
+body.wa-privacy-on.wa-blur-names [data-testid="cell-frame-container"]:hover span[title],
+body.wa-privacy-on.wa-blur-names #pane-side span[title]:hover,
+body.wa-privacy-on.wa-blur-names header:hover [data-testid="conversation-info-header-chat-title"],
+body.wa-privacy-on.wa-blur-names header:hover span[title],
+body.wa-privacy-on.wa-blur-names header:hover span[dir="auto"],
+body.wa-privacy-on.wa-blur-names #main header:hover span[title],
+body.wa-privacy-on.wa-blur-names #main header:hover span[dir="auto"],
+body.wa-privacy-on.wa-blur-names header span[title]:hover,
+body.wa-privacy-on.wa-blur-names header span[dir="auto"]:hover,
+body.wa-privacy-on.wa-blur-names #main [data-testid="msg-container"]:hover span[style*="color"],
+body.wa-privacy-on.wa-blur-names #main [data-testid="msg-container"]:hover [data-testid="author"] {
   filter: blur(0px) !important;
 }
 
 /* --------------------------------------------------------------------------
    5. Profile Pictures / Avatars
    -------------------------------------------------------------------------- */
-body.wa-privacy-on.wa-blur-photos [data-testid="chat-list"] img,
+body.wa-privacy-on.wa-blur-photos #pane-side img,
+body.wa-privacy-on.wa-blur-photos [data-testid="cell-frame-container"] img,
 body.wa-privacy-on.wa-blur-photos [data-testid="avatar"],
 body.wa-privacy-on.wa-blur-photos [data-testid="default-user"],
 body.wa-privacy-on.wa-blur-photos header img,
 body.wa-privacy-on.wa-blur-photos [data-testid="conversation-info-header"] img,
-body.wa-privacy-on.wa-blur-photos [data-testid="msg-container"] img[src*="pps.whatsapp.net"] {
+body.wa-privacy-on.wa-blur-photos #main [data-testid="msg-container"] img[src*="pps.whatsapp.net"] {
   filter: blur(calc(var(--wa-blur-intensity, 8px) * 1.2)) !important;
   transition: var(--wa-blur-transition);
 }
 
 /* Unblur avatars on hover */
-body.wa-privacy-on.wa-blur-photos [data-testid="chat-list"] [role="listitem"]:hover img,
+body.wa-privacy-on.wa-blur-photos #pane-side [role="row"]:hover img,
+body.wa-privacy-on.wa-blur-photos #pane-side [role="listitem"]:hover img,
+body.wa-privacy-on.wa-blur-photos [data-testid="cell-frame-container"]:hover img,
 body.wa-privacy-on.wa-blur-photos [data-testid="avatar"]:hover,
 body.wa-privacy-on.wa-blur-photos [data-testid="default-user"]:hover,
 body.wa-privacy-on.wa-blur-photos header img:hover,
 body.wa-privacy-on.wa-blur-photos [data-testid="conversation-info-header"]:hover img,
-body.wa-privacy-on.wa-blur-photos [data-testid="msg-container"] img[src*="pps.whatsapp.net"]:hover {
+body.wa-privacy-on.wa-blur-photos #main [data-testid="msg-container"]:hover img[src*="pps.whatsapp.net"] {
   filter: blur(0px) !important;
 }
 
@@ -195,4 +243,3 @@ body.wa-privacy-on.wa-blur-input footer [role="textbox"]:focus {
 body:not(.wa-privacy-on) #wa-privacy-pill {
   display: none !important;
 }
-
