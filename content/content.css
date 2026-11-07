@@ -1,0 +1,198 @@
+/* ==========================================================================
+   WhatsApp Web Privacy Shield - Content Stylesheet
+   Pure CSS blur & hover reveal system for maximum performance & zero lag
+   ========================================================================== */
+
+:root {
+  --wa-blur-intensity: 8px;
+  --wa-blur-transition: filter 0.18s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* --------------------------------------------------------------------------
+   1. Chat Messages in Conversation
+   -------------------------------------------------------------------------- */
+body.wa-privacy-on.wa-blur-messages:not(.wa-unblur-active) [data-testid="msg-container"],
+body.wa-privacy-on.wa-blur-messages:not(.wa-unblur-active) .message-in,
+body.wa-privacy-on.wa-blur-messages:not(.wa-unblur-active) .message-out,
+body.wa-privacy-on.wa-blur-messages:not(.wa-unblur-active) div[data-id] .selectable-text,
+body.wa-privacy-on.wa-blur-messages:not(.wa-unblur-active) div[role="row"] .copyable-text {
+  filter: blur(var(--wa-blur-intensity, 8px)) !important;
+  transition: var(--wa-blur-transition);
+}
+
+/* Unblur message on hover */
+body.wa-privacy-on.wa-blur-messages:not(.wa-unblur-active) [data-testid="msg-container"]:hover,
+body.wa-privacy-on.wa-blur-messages:not(.wa-unblur-active) .message-in:hover,
+body.wa-privacy-on.wa-blur-messages:not(.wa-unblur-active) .message-out:hover,
+body.wa-privacy-on.wa-blur-messages:not(.wa-unblur-active) div[data-id]:hover .selectable-text,
+body.wa-privacy-on.wa-blur-messages:not(.wa-unblur-active) div[role="row"]:hover .copyable-text {
+  filter: blur(0px) !important;
+}
+
+/* If user enables "Unblur Active Chat", open chat messages remain unblurred */
+body.wa-privacy-on.wa-unblur-active #main [data-testid="msg-container"],
+body.wa-privacy-on.wa-unblur-active #main .message-in,
+body.wa-privacy-on.wa-unblur-active #main .message-out,
+body.wa-privacy-on.wa-unblur-active #main .selectable-text {
+  filter: none !important;
+}
+
+/* --------------------------------------------------------------------------
+   2. Last Message Previews in Chat List (Left Sidebar)
+   -------------------------------------------------------------------------- */
+body.wa-privacy-on.wa-blur-sidebar [data-testid="cell-frame-container"] span[dir="ltr"]:not([title]),
+body.wa-privacy-on.wa-blur-sidebar [data-testid="last-msg-status"],
+body.wa-privacy-on.wa-blur-sidebar [data-testid="cell-frame-title"] ~ div,
+body.wa-privacy-on.wa-blur-sidebar [data-testid="chat-list"] [role="listitem"] span:not([title])[dir="ltr"],
+body.wa-privacy-on.wa-blur-sidebar [data-testid="chat-list"] [role="listitem"] div[role="gridcell"]:nth-child(2) div:last-child {
+  filter: blur(var(--wa-blur-intensity, 8px)) !important;
+  transition: var(--wa-blur-transition);
+}
+
+/* Unblur preview on list item hover */
+body.wa-privacy-on.wa-blur-sidebar [data-testid="cell-frame-container"]:hover span[dir="ltr"]:not([title]),
+body.wa-privacy-on.wa-blur-sidebar [data-testid="cell-frame-container"]:hover [data-testid="last-msg-status"],
+body.wa-privacy-on.wa-blur-sidebar [data-testid="cell-frame-container"]:hover [data-testid="cell-frame-title"] ~ div,
+body.wa-privacy-on.wa-blur-sidebar [data-testid="chat-list"] [role="listitem"]:hover span:not([title])[dir="ltr"],
+body.wa-privacy-on.wa-blur-sidebar [data-testid="chat-list"] [role="listitem"]:hover div[role="gridcell"]:nth-child(2) div:last-child {
+  filter: blur(0px) !important;
+}
+
+/* --------------------------------------------------------------------------
+   3. Media (Photos, Videos, Stickers, Voice Notes)
+   -------------------------------------------------------------------------- */
+body.wa-privacy-on.wa-blur-media [data-testid="image-thumb"],
+body.wa-privacy-on.wa-blur-media [data-testid="video-thumb"],
+body.wa-privacy-on.wa-blur-media [data-testid="sticker"],
+body.wa-privacy-on.wa-blur-media [data-testid="audio-player"],
+body.wa-privacy-on.wa-blur-media [data-testid="voice-player"],
+body.wa-privacy-on.wa-blur-media [data-testid="media-caption"],
+body.wa-privacy-on.wa-blur-media [data-testid="msg-container"] img:not([alt=""]):not([data-testid="status-v3-container"]),
+body.wa-privacy-on.wa-blur-media [data-testid="msg-container"] video,
+body.wa-privacy-on.wa-blur-media [data-testid="msg-container"] canvas {
+  filter: blur(calc(var(--wa-blur-intensity, 8px) * 1.5)) !important;
+  transition: var(--wa-blur-transition);
+}
+
+/* Unblur media on hover */
+body.wa-privacy-on.wa-blur-media [data-testid="image-thumb"]:hover,
+body.wa-privacy-on.wa-blur-media [data-testid="video-thumb"]:hover,
+body.wa-privacy-on.wa-blur-media [data-testid="sticker"]:hover,
+body.wa-privacy-on.wa-blur-media [data-testid="audio-player"]:hover,
+body.wa-privacy-on.wa-blur-media [data-testid="voice-player"]:hover,
+body.wa-privacy-on.wa-blur-media [data-testid="media-caption"]:hover,
+body.wa-privacy-on.wa-blur-media [data-testid="msg-container"] img:hover,
+body.wa-privacy-on.wa-blur-media [data-testid="msg-container"] video:hover,
+body.wa-privacy-on.wa-blur-media [data-testid="msg-container"] canvas:hover {
+  filter: blur(0px) !important;
+}
+
+/* --------------------------------------------------------------------------
+   4. Contact & Group Names
+   -------------------------------------------------------------------------- */
+body.wa-privacy-on.wa-blur-names [data-testid="cell-frame-title"],
+body.wa-privacy-on.wa-blur-names [data-testid="chat-list"] span[title],
+body.wa-privacy-on.wa-blur-names header [data-testid="conversation-info-header-chat-title"],
+body.wa-privacy-on.wa-blur-names header span[title] {
+  filter: blur(var(--wa-blur-intensity, 8px)) !important;
+  transition: var(--wa-blur-transition);
+}
+
+/* Unblur names on hover */
+body.wa-privacy-on.wa-blur-names [data-testid="cell-frame-container"]:hover [data-testid="cell-frame-title"],
+body.wa-privacy-on.wa-blur-names [data-testid="chat-list"] [role="listitem"]:hover span[title],
+body.wa-privacy-on.wa-blur-names header [data-testid="conversation-info-header-chat-title"]:hover,
+body.wa-privacy-on.wa-blur-names header span[title]:hover {
+  filter: blur(0px) !important;
+}
+
+/* --------------------------------------------------------------------------
+   5. Profile Pictures / Avatars
+   -------------------------------------------------------------------------- */
+body.wa-privacy-on.wa-blur-photos [data-testid="chat-list"] img,
+body.wa-privacy-on.wa-blur-photos [data-testid="avatar"],
+body.wa-privacy-on.wa-blur-photos [data-testid="default-user"],
+body.wa-privacy-on.wa-blur-photos header img,
+body.wa-privacy-on.wa-blur-photos [data-testid="conversation-info-header"] img,
+body.wa-privacy-on.wa-blur-photos [data-testid="msg-container"] img[src*="pps.whatsapp.net"] {
+  filter: blur(calc(var(--wa-blur-intensity, 8px) * 1.2)) !important;
+  transition: var(--wa-blur-transition);
+}
+
+/* Unblur avatars on hover */
+body.wa-privacy-on.wa-blur-photos [data-testid="chat-list"] [role="listitem"]:hover img,
+body.wa-privacy-on.wa-blur-photos [data-testid="avatar"]:hover,
+body.wa-privacy-on.wa-blur-photos [data-testid="default-user"]:hover,
+body.wa-privacy-on.wa-blur-photos header img:hover,
+body.wa-privacy-on.wa-blur-photos [data-testid="conversation-info-header"]:hover img,
+body.wa-privacy-on.wa-blur-photos [data-testid="msg-container"] img[src*="pps.whatsapp.net"]:hover {
+  filter: blur(0px) !important;
+}
+
+/* --------------------------------------------------------------------------
+   6. Message Input / Compose Box
+   -------------------------------------------------------------------------- */
+body.wa-privacy-on.wa-blur-input footer [data-testid="conversation-compose-box-input"],
+body.wa-privacy-on.wa-blur-input footer [contenteditable="true"],
+body.wa-privacy-on.wa-blur-input footer [role="textbox"] {
+  filter: blur(var(--wa-blur-intensity, 8px)) !important;
+  transition: var(--wa-blur-transition);
+}
+
+/* Unblur input on hover or focus */
+body.wa-privacy-on.wa-blur-input footer [data-testid="conversation-compose-box-input"]:hover,
+body.wa-privacy-on.wa-blur-input footer [data-testid="conversation-compose-box-input"]:focus,
+body.wa-privacy-on.wa-blur-input footer [contenteditable="true"]:hover,
+body.wa-privacy-on.wa-blur-input footer [contenteditable="true"]:focus,
+body.wa-privacy-on.wa-blur-input footer [role="textbox"]:hover,
+body.wa-privacy-on.wa-blur-input footer [role="textbox"]:focus {
+  filter: blur(0px) !important;
+}
+
+/* --------------------------------------------------------------------------
+   7. Subtle Status Indicator (Discreet Pill in bottom corner)
+   -------------------------------------------------------------------------- */
+#wa-privacy-pill {
+  position: fixed;
+  bottom: 12px;
+  right: 16px;
+  background: rgba(17, 27, 33, 0.88);
+  backdrop-filter: blur(10px);
+  color: #00a884;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  padding: 5px 10px;
+  border-radius: 9999px;
+  border: 1px solid rgba(0, 168, 132, 0.35);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  user-select: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  opacity: 0.75;
+}
+
+#wa-privacy-pill:hover {
+  opacity: 1;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.35);
+  border-color: rgba(0, 168, 132, 0.6);
+}
+
+#wa-privacy-pill .wa-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #00a884;
+  box-shadow: 0 0 6px #00a884;
+}
+
+body:not(.wa-privacy-on) #wa-privacy-pill {
+  display: none !important;
+}
+

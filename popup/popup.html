@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WhatsApp Web Privacy Shield</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <header class="header">
+      <div class="brand">
+        <div class="logo">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            <circle cx="12" cy="11" r="3"/>
+          </svg>
+        </div>
+        <div>
+          <h1 class="title">WA Privacy Shield</h1>
+          <p class="subtitle">Pelindung Layar WhatsApp Web</p>
+        </div>
+      </div>
+      <div id="statusBadge" class="status-badge active">
+        <span class="status-dot"></span>
+        <span id="statusText">AKTIF</span>
+      </div>
+    </header>
+
+    <!-- Master Switch Hero Card -->
+    <div class="hero-card">
+      <div class="hero-info">
+        <span class="hero-label">Master Switch</span>
+        <span class="hero-desc">Tekan <kbd>Alt</kbd> + <kbd>X</kbd> untuk toggle cepat</span>
+      </div>
+      <label class="switch switch-hero" for="toggleMaster">
+        <input type="checkbox" id="toggleMaster" role="switch" aria-label="Toggle Mode Privasi">
+        <span class="slider round"></span>
+      </label>
+    </div>
+
+    <!-- Quick Presets -->
+    <div class="presets-section">
+      <span class="presets-title">Preset Cepat:</span>
+      <div class="preset-buttons">
+        <button type="button" class="preset-btn" data-preset="balanced">Standar</button>
+        <button type="button" class="preset-btn" data-preset="max">Maksimal</button>
+        <button type="button" class="preset-btn" data-preset="minimal">Minimal</button>
+      </div>
+    </div>
+
+    <!-- Setting Groups -->
+    <div class="settings-group">
+      <div class="group-header">Pesan & Percakapan</div>
+
+      <!-- Option 1: Blur Messages -->
+      <div class="setting-item">
+        <div class="item-text">
+          <span class="item-title">Blur Isi Pesan</span>
+          <span class="item-desc">Arahkan kursor (hover) untuk melihat</span>
+        </div>
+        <label class="switch" for="blurMessages">
+          <input type="checkbox" id="blurMessages" role="switch">
+          <span class="slider round"></span>
+        </label>
+      </div>
+
+      <!-- Option 2: Unblur when opened -->
+      <div class="setting-item highlight-item">
+        <div class="item-text">
+          <span class="item-title">Buka Chat = Buka Blur</span>
+          <span class="item-desc">Chat yang aktif langsung jelas tanpa hover</span>
+        </div>
+        <label class="switch" for="unblurActiveChat">
+          <input type="checkbox" id="unblurActiveChat" role="switch">
+          <span class="slider round"></span>
+        </label>
+      </div>
+
+      <!-- Option 3: Blur Sidebar Previews -->
+      <div class="setting-item">
+        <div class="item-text">
+          <span class="item-title">Blur Preview Daftar Chat</span>
+          <span class="item-desc">Pesan terakhir di sidebar kiri diblur</span>
+        </div>
+        <label class="switch" for="blurSidebar">
+          <input type="checkbox" id="blurSidebar" role="switch">
+          <span class="slider round"></span>
+        </label>
+      </div>
+    </div>
+
+    <div class="settings-group">
+      <div class="group-header">Media & Identitas</div>
+
+      <!-- Option 4: Blur Media -->
+      <div class="setting-item">
+        <div class="item-text">
+          <span class="item-title">Blur Media & Stiker</span>
+          <span class="item-desc">Foto, video, stiker, dan audio player</span>
+        </div>
+        <label class="switch" for="blurMedia">
+          <input type="checkbox" id="blurMedia" role="switch">
+          <span class="slider round"></span>
+        </label>
+      </div>
+
+      <!-- Option 5: Blur Names -->
+      <div class="setting-item">
+        <div class="item-text">
+          <span class="item-title">Blur Nama Kontak & Grup</span>
+          <span class="item-desc">Sembunyikan nama kontak & judul grup</span>
+        </div>
+        <label class="switch" for="blurNames">
+          <input type="checkbox" id="blurNames" role="switch">
+          <span class="slider round"></span>
+        </label>
+      </div>
+
+      <!-- Option 6: Blur Profile Photos -->
+      <div class="setting-item">
+        <div class="item-text">
+          <span class="item-title">Blur Foto Profil</span>
+          <span class="item-desc">Avatar di daftar chat & header</span>
+        </div>
+        <label class="switch" for="blurPhotos">
+          <input type="checkbox" id="blurPhotos" role="switch">
+          <span class="slider round"></span>
+        </label>
+      </div>
+
+      <!-- Option 7: Blur Input -->
+      <div class="setting-item">
+        <div class="item-text">
+          <span class="item-title">Blur Kotak Ketik</span>
+          <span class="item-desc">Blur teks saat sedang mengetik pesan</span>
+        </div>
+        <label class="switch" for="blurInput">
+          <input type="checkbox" id="blurInput" role="switch">
+          <span class="slider round"></span>
+        </label>
+      </div>
+    </div>
+
+    <!-- Blur Intensity Slider -->
+    <div class="slider-section">
+      <div class="slider-header">
+        <span class="slider-title">Intensitas Blur</span>
+        <span id="intensityValue" class="intensity-badge">8px</span>
+      </div>
+      <input type="range" id="blurIntensity" min="3" max="18" step="1" value="8" class="range-slider">
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <label class="checkbox-label" for="showPill">
+        <input type="checkbox" id="showPill">
+        <span>Tampilkan indikator di layar WA Web</span>
+      </label>
+      <div class="footer-note">100% Lokal & Aman (Tanpa Pengiriman Data)</div>
+    </footer>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
+
