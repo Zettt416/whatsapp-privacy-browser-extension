@@ -1,17 +1,8 @@
-/* ==========================================================================
-   WhatsApp Web Privacy Shield - Content Stylesheet
-   Zero-lag CSS blur & hover reveal system using :not(:hover) architecture
-   ========================================================================== */
-
 :root {
   --wa-blur-intensity: 8px;
   --wa-blur-transition: filter 0.15s ease-out;
 }
 
-/* --------------------------------------------------------------------------
-   1. Chat Messages in Conversation
-   Applied ONLY when the message bubble or row is NOT being hovered.
-   -------------------------------------------------------------------------- */
 body.wa-privacy-on.wa-blur-messages:not(.wa-unblur-active) [data-testid="msg-container"]:not(:hover),
 body.wa-privacy-on.wa-blur-messages:not(.wa-unblur-active) .message-in:not(:hover),
 body.wa-privacy-on.wa-blur-messages:not(.wa-unblur-active) .message-out:not(:hover),
@@ -22,10 +13,6 @@ body.wa-privacy-on.wa-blur-messages:not(.wa-unblur-active) [data-testid="msg-con
   transition: var(--wa-blur-transition);
 }
 
-/* --------------------------------------------------------------------------
-   2. Media (Photos, Videos, Stickers, Voice Notes) in Chat
-   Applied ONLY when the parent message bubble is NOT being hovered.
-   -------------------------------------------------------------------------- */
 body.wa-privacy-on.wa-blur-media [data-testid="msg-container"]:not(:hover) [data-testid="image-thumb"],
 body.wa-privacy-on.wa-blur-media [data-testid="msg-container"]:not(:hover) [data-testid="video-thumb"],
 body.wa-privacy-on.wa-blur-media [data-testid="msg-container"]:not(:hover) [data-testid="sticker"],
@@ -49,10 +36,6 @@ body.wa-privacy-on.wa-blur-media div[data-id]:not(:hover) canvas {
   transition: var(--wa-blur-transition);
 }
 
-/* --------------------------------------------------------------------------
-   UNBLUR ON HOVER (MESSAGES & MEDIA)
-   Instant reveal with 0ms delay when cursor enters any message or media.
-   -------------------------------------------------------------------------- */
 body.wa-privacy-on [data-testid="msg-container"]:hover,
 body.wa-privacy-on [data-testid="msg-container"]:hover *,
 body.wa-privacy-on .message-in:hover,
@@ -78,7 +61,6 @@ body.wa-privacy-on [data-testid="media-caption"]:hover {
   filter: none !important;
 }
 
-/* If user enables "Unblur Active Chat", open chat messages and media remain completely unblurred */
 body.wa-privacy-on.wa-unblur-active #main [data-testid="msg-container"],
 body.wa-privacy-on.wa-unblur-active #main [data-testid="msg-container"] *,
 body.wa-privacy-on.wa-unblur-active #main .message-in,
@@ -92,9 +74,6 @@ body.wa-privacy-on.wa-unblur-active #main header span[dir="auto"] {
   filter: none !important;
 }
 
-/* --------------------------------------------------------------------------
-   3. Last Message Previews in Chat List (Left Sidebar)
-   -------------------------------------------------------------------------- */
 body.wa-privacy-on.wa-blur-sidebar [data-testid="cell-frame-container"]:not(:hover) span[dir="ltr"]:not([title]),
 body.wa-privacy-on.wa-blur-sidebar [data-testid="cell-frame-container"]:not(:hover) [data-testid="last-msg-status"],
 body.wa-privacy-on.wa-blur-sidebar [data-testid="cell-frame-container"]:not(:hover) [data-testid="cell-frame-title"] ~ div,
@@ -106,7 +85,6 @@ body.wa-privacy-on.wa-blur-sidebar #pane-side [role="listitem"]:not(:hover) span
   transition: var(--wa-blur-transition);
 }
 
-/* Unblur preview on list item hover */
 body.wa-privacy-on.wa-blur-sidebar [data-testid="cell-frame-container"]:hover span[dir="ltr"]:not([title]),
 body.wa-privacy-on.wa-blur-sidebar [data-testid="cell-frame-container"]:hover [data-testid="last-msg-status"],
 body.wa-privacy-on.wa-blur-sidebar [data-testid="cell-frame-container"]:hover [data-testid="cell-frame-title"] ~ div,
@@ -117,9 +95,6 @@ body.wa-privacy-on.wa-blur-sidebar #pane-side [role="listitem"]:hover span:not([
   filter: none !important;
 }
 
-/* --------------------------------------------------------------------------
-   4. Contact & Group Names (Sidebar, Header, and Group Senders)
-   -------------------------------------------------------------------------- */
 body.wa-privacy-on.wa-blur-names #pane-side [role="row"]:not(:hover) span[title],
 body.wa-privacy-on.wa-blur-names #pane-side [role="listitem"]:not(:hover) span[title],
 body.wa-privacy-on.wa-blur-names #pane-side [data-testid="cell-frame-container"]:not(:hover) span[title],
@@ -141,7 +116,6 @@ body.wa-privacy-on.wa-blur-names #main .message-in:not(:hover) span[style*="colo
   transition: var(--wa-blur-transition);
 }
 
-/* Unblur names on hover */
 body.wa-privacy-on.wa-blur-names #pane-side [role="row"]:hover span[title],
 body.wa-privacy-on.wa-blur-names #pane-side [role="listitem"]:hover span[title],
 body.wa-privacy-on.wa-blur-names #pane-side [data-testid="cell-frame-container"]:hover span[title],
@@ -161,9 +135,6 @@ body.wa-privacy-on.wa-blur-names #main [data-testid="msg-container"]:hover [data
   filter: none !important;
 }
 
-/* --------------------------------------------------------------------------
-   5. Profile Pictures / Avatars
-   -------------------------------------------------------------------------- */
 body.wa-privacy-on.wa-blur-photos #pane-side [role="row"]:not(:hover) img,
 body.wa-privacy-on.wa-blur-photos #pane-side [role="listitem"]:not(:hover) img,
 body.wa-privacy-on.wa-blur-photos [data-testid="cell-frame-container"]:not(:hover) img,
@@ -176,7 +147,6 @@ body.wa-privacy-on.wa-blur-photos #main [data-testid="msg-container"]:not(:hover
   transition: var(--wa-blur-transition);
 }
 
-/* Unblur avatars on hover */
 body.wa-privacy-on.wa-blur-photos #pane-side [role="row"]:hover img,
 body.wa-privacy-on.wa-blur-photos #pane-side [role="listitem"]:hover img,
 body.wa-privacy-on.wa-blur-photos [data-testid="cell-frame-container"]:hover img,
@@ -188,9 +158,6 @@ body.wa-privacy-on.wa-blur-photos #main [data-testid="msg-container"]:hover img[
   filter: none !important;
 }
 
-/* --------------------------------------------------------------------------
-   6. Message Input / Compose Box
-   -------------------------------------------------------------------------- */
 body.wa-privacy-on.wa-blur-input footer [data-testid="conversation-compose-box-input"]:not(:hover):not(:focus-within),
 body.wa-privacy-on.wa-blur-input footer [contenteditable="true"]:not(:hover):not(:focus-within),
 body.wa-privacy-on.wa-blur-input footer [role="textbox"]:not(:hover):not(:focus-within) {
@@ -198,7 +165,6 @@ body.wa-privacy-on.wa-blur-input footer [role="textbox"]:not(:hover):not(:focus-
   transition: var(--wa-blur-transition);
 }
 
-/* Unblur input on hover or focus */
 body.wa-privacy-on.wa-blur-input footer [data-testid="conversation-compose-box-input"]:hover,
 body.wa-privacy-on.wa-blur-input footer [data-testid="conversation-compose-box-input"]:focus,
 body.wa-privacy-on.wa-blur-input footer [contenteditable="true"]:hover,
@@ -208,9 +174,6 @@ body.wa-privacy-on.wa-blur-input footer [role="textbox"]:focus {
   filter: none !important;
 }
 
-/* --------------------------------------------------------------------------
-   7. Subtle Status Indicator (Discreet Pill in bottom corner)
-   -------------------------------------------------------------------------- */
 #wa-privacy-pill {
   position: fixed;
   bottom: 12px;

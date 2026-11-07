@@ -1,8 +1,3 @@
-/**
- * WhatsApp Web Privacy Shield - Content Script
- * Applies CSS class toggles and listens for live preference updates.
- */
-
 (() => {
   const DEFAULT_SETTINGS = {
     enabled: true,
@@ -19,19 +14,14 @@
 
   let currentSettings = { ...DEFAULT_SETTINGS };
 
-  // Apply classes to body/root element
   function applyPrivacyClasses(settings) {
     const root = document.body || document.documentElement;
     if (!root) return;
 
-    // Blur amount
     const intensity = Math.min(Math.max(settings.blurIntensity || 8, 2), 24);
     document.documentElement.style.setProperty('--wa-blur-intensity', `${intensity}px`);
 
-    // Master switch
     root.classList.toggle('wa-privacy-on', !!settings.enabled);
-
-    // Feature switches
     root.classList.toggle('wa-blur-messages', !!settings.blurMessages);
     root.classList.toggle('wa-unblur-active', !!settings.unblurActiveChat);
     root.classList.toggle('wa-blur-sidebar', !!settings.blurSidebar);
@@ -43,7 +33,6 @@
     updateStatusPill(settings);
   }
 
-  // Create or update floating discreet pill
   function updateStatusPill(settings) {
     let pill = document.getElementById('wa-privacy-pill');
 
@@ -67,7 +56,6 @@
     }
   }
 
-  // Load initial settings
   function init() {
     chrome.storage.local.get(DEFAULT_SETTINGS, (stored) => {
       currentSettings = { ...DEFAULT_SETTINGS, ...stored };
@@ -75,7 +63,6 @@
     });
   }
 
-  // Listen for storage changes
   chrome.storage.onChanged.addListener((changes, areaName) => {
     if (areaName !== 'local') return;
 
@@ -85,7 +72,6 @@
     applyPrivacyClasses(currentSettings);
   });
 
-  // Shortcut listener for Alt+X
   window.addEventListener('keydown', (e) => {
     if (e.altKey && (e.key === 'x' || e.key === 'X' || e.code === 'KeyX')) {
       e.preventDefault();
@@ -94,7 +80,6 @@
     }
   });
 
-  // Initialize immediately or when DOM is ready
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', init);
   } else {

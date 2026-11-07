@@ -1,8 +1,3 @@
-/**
- * WhatsApp Web Privacy Shield - Popup Script
- * Manages UI interactions and persists settings via chrome.storage.local.
- */
-
 document.addEventListener('DOMContentLoaded', () => {
   const DEFAULT_SETTINGS = {
     enabled: true,
@@ -17,7 +12,6 @@ document.addEventListener('DOMContentLoaded', () => {
     showPill: true
   };
 
-  // Elements
   const toggleMaster = document.getElementById('toggleMaster');
   const statusBadge = document.getElementById('statusBadge');
   const statusText = document.getElementById('statusText');
@@ -37,7 +31,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const intensityValue = document.getElementById('intensityValue');
   const presetButtons = document.querySelectorAll('.preset-btn');
 
-  // Update Status Badge UI
   function updateBadge(isEnabled) {
     if (isEnabled) {
       statusBadge.classList.add('active');
@@ -48,7 +41,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // Load and apply settings to UI
   chrome.storage.local.get(DEFAULT_SETTINGS, (settings) => {
     toggleMaster.checked = !!settings.enabled;
     updateBadge(settings.enabled);
@@ -64,14 +56,12 @@ document.addEventListener('DOMContentLoaded', () => {
     intensityValue.textContent = `${intensity}px`;
   });
 
-  // Master switch listener
   toggleMaster.addEventListener('change', () => {
     const isEnabled = toggleMaster.checked;
     updateBadge(isEnabled);
     chrome.storage.local.set({ enabled: isEnabled });
   });
 
-  // Individual toggle listeners
   for (const [key, element] of Object.entries(checkboxes)) {
     if (element) {
       element.addEventListener('change', () => {
@@ -80,14 +70,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // Blur Intensity slider listener
   blurIntensity.addEventListener('input', () => {
     const val = parseInt(blurIntensity.value, 10);
     intensityValue.textContent = `${val}px`;
     chrome.storage.local.set({ blurIntensity: val });
   });
 
-  // Presets
   const PRESETS = {
     balanced: {
       enabled: true,
@@ -130,7 +118,6 @@ document.addEventListener('DOMContentLoaded', () => {
       const targetPreset = PRESETS[presetKey];
       if (!targetPreset) return;
 
-      // Apply to UI
       toggleMaster.checked = targetPreset.enabled;
       updateBadge(targetPreset.enabled);
 
@@ -143,12 +130,10 @@ document.addEventListener('DOMContentLoaded', () => {
       blurIntensity.value = targetPreset.blurIntensity;
       intensityValue.textContent = `${targetPreset.blurIntensity}px`;
 
-      // Save to storage
       chrome.storage.local.set(targetPreset);
     });
   });
 
-  // Listen for storage changes from shortcut or background
   chrome.storage.onChanged.addListener((changes, areaName) => {
     if (areaName !== 'local') return;
 

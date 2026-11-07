@@ -1,8 +1,3 @@
-/**
- * WhatsApp Web Privacy Shield - Background Service Worker
- * Handles extension installation and keyboard shortcut commands.
- */
-
 const DEFAULT_SETTINGS = {
   enabled: true,
   blurMessages: true,
@@ -30,7 +25,6 @@ chrome.runtime.onInstalled.addListener(() => {
   });
 });
 
-// Shortcut command listener (Alt+X)
 chrome.commands.onCommand.addListener((command) => {
   if (command === 'toggle-privacy') {
     chrome.storage.local.get(['enabled'], (result) => {
